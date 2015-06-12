@@ -1,5 +1,5 @@
 /*!
- * cookie.js v2.1.0
+ * cookie v2.1.1
  * http://www.noindoin.com/
  *
  * Copyright (c) 2010 Jiang Fengming <fenix@noindoin.com>

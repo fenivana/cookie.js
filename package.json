@@ -1,6 +1,6 @@
 {
   "name": "cookie.js",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Cookie utility for browser",
   "main": "cookie.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fenivana/cookie.js.git"
+    "url": "git+https://github.com/fenivana/cookie.git"
   },
   "keywords": [
     "cookie",
@@ -17,7 +17,7 @@
   "author": "Jiang Fengming <fenix@noindoin.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fenivana/cookie.js/issues"
+    "url": "https://github.com/fenivana/cookie/issues"
   },
-  "homepage": "https://github.com/fenivana/cookie.js#readme"
+  "homepage": "https://github.com/fenivana/cookie#readme"
 }

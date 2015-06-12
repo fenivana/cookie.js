@@ -1,0 +1,23 @@
+{
+  "name": "cookie.js",
+  "version": "2.1.0",
+  "description": "Cookie utility for browser",
+  "main": "cookie.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fenivana/cookie.js.git"
+  },
+  "keywords": [
+    "cookie",
+    "browser"
+  ],
+  "author": "Jiang Fengming <fenix@noindoin.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fenivana/cookie.js/issues"
+  },
+  "homepage": "https://github.com/fenivana/cookie.js#readme"
+}

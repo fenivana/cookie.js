@@ -1,6 +1,6 @@
 {
   "name": "cookie.js",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "document.cookie for human",
   "main": "dist/Cookie.js",
   "module": "dist/Cookie.mjs",

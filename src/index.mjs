@@ -24,15 +24,17 @@ class Cookie {
     // `max-age` is not compatible with any version of Internet Explorer, Edge and some mobile browsers.
     // so we convert `max-age` to `expires`
     if (maxAge != null) {
-      expires = maxAge <= 0 ? 0 : Date.now() + maxAge * 1000
+      expires = maxAge <= 0 ? 0
+        : maxAge === Infinity ? maxAge
+        : Date.now() + maxAge * 1000
     }
 
     if (expires != null) {
-      if (expires === Infinity) expires = 'Fri, 31 Dec 9999 23:59:59 GMT'
-      else if (expires.constructor === Number) expires = new Date(expires).toUTCString()
-      else if (expires instanceof Date) expires = expires.toUTCString()
+      if (!(expires instanceof Date)) {
+        expires = new Date(expires === Infinity ? 'Fri, 31 Dec 9999 23:59:59 GMT' : expires)
+      }
 
-      cookie += '; expires=' + expires
+      cookie += '; expires=' + expires.toUTCString()
     }
 
     if (secure) cookie += '; secure'

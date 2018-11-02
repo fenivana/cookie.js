@@ -1,0 +1,118 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Document</title>
+<script src="../dist/Cookie.js"></script>
+<script>
+// set cookie
+Cookie.set('cookie', 'delicious')
+
+// get cookie
+console.log(Cookie.get('cookie'))
+
+// Non-ASCII chars and special chars
+Cookie.set(' 曲奇,;=.*+?^${}()|[]\\ ', ' 好吃,;=.*+?^${}()|[]\\ ')
+console.log(JSON.stringify(Cookie.get(' 曲奇,;=.*+?^${}()|[]\\ ')))
+
+// options
+Cookie.set('hello', 'world', {
+  path: '/',
+  domain: 'dev.local',
+  // secure: true, // unable to test under local http env
+  samesite: 'lax'
+})
+
+// max-age param
+Cookie.set('maxAge.Infinity', 'Infinity', {
+  maxAge: Infinity
+})
+
+// 60 seconds
+Cookie.set('maxAge.60', '60', {
+  maxAge: 60
+})
+
+// expires immediately
+// same as Cookie.remove()
+Cookie.set('maxAge.0', '0', {
+  maxAge: 0
+})
+
+// expires immediately also
+Cookie.set('maxAge.-1', '-1', {
+  maxAge: -1
+})
+
+// expires param
+Cookie.set('expires.Infinity', 'Infinity', {
+  expires: Infinity
+})
+
+Cookie.set('expires.timestamp', 'timestamp', {
+  expires: Date.now() + 60 * 1000
+})
+
+Cookie.set('expires.UTCString', 'UTCString', {
+  expires: new Date(Date.now() + 60 * 1000).toUTCString()
+})
+
+Cookie.set('expires.ISOString', 'ISOString', {
+  expires: new Date(Date.now() + 60 * 1000).toISOString()
+})
+
+Cookie.set('expires.LocaleString', 'LocaleString', {
+  expires: new Date(Date.now() + 60 * 1000).toLocaleString()
+})
+
+// expires immediately
+Cookie.set('expires.pastTime', 'pastTime', {
+  expires: Date.now() - 1
+})
+
+
+// instance with default options
+var ck = new Cookie({
+  maxAge: 60,
+  path: '/',
+  domain: 'dev.local',
+  samesite: 'lax'
+})
+
+ck.set('instance', 'with defaults')
+
+function remove() {
+  Cookie.remove('cookie')
+  Cookie.remove(' 曲奇,;=.*+?^${}()|[]\\ ')
+
+  // use same options as Cookie.set()
+  Cookie.remove('hello', {
+    path: '/',
+    domain: 'dev.local',
+    samesite: 'lax'
+  })
+
+  Cookie.remove('maxAge.Infinity')
+  Cookie.remove('maxAge.60')
+  Cookie.remove('expires.Infinity')
+  Cookie.remove('expires.timestamp')
+  Cookie.remove('expires.UTCString')
+  Cookie.remove('expires.ISOString')
+  Cookie.remove('expires.LocaleString')
+
+  ck.remove('instance')
+}
+</script>
+</head>
+<body>
+  <ol>
+    <li>Set `hosts`: `127.0.0.1    www.dev.local`</li>
+    <li>In package root folder, run `npx http-server`</li>
+    <li>Open http://www.dev.local:8080/examples/</li>
+    <li>Open DevTools -> Application -> Cookies</li>
+  </ol>
+
+  <button onclick="remove()">remove cookies (remember to click refresh button to check result)</button>
+</body>
+</html>

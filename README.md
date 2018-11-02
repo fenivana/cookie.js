@@ -1,50 +1,100 @@
 # Cookie utility for browser
 
+## Install
+```sh
+yarn add cookie.js
+```
+
 ## Usage
 ```js
-// set a session cookie
-cookie.set('sessionId', 123)
+import Cookie from 'cookie.js'
 
-// get a cookie
-cookie.get('sessionId')
+// set cookie
+Cookie.set('cookie', 'delicious')
 
-// set a cookie with attributes
-cookie.set('attrs', 'ok', {
-  maxAge: 500,
-  expires: new Date('2015-05-13T07:30:00Z'),
-  path: '/foo',
-  domain: 'www.example.com',
-  secure: true
+// get cookie
+console.log(Cookie.get('cookie'))
+
+// Non-ASCII chars and special chars
+Cookie.set(' 曲奇,;=.*+?^${}()|[]\\ ', ' 好吃,;=.*+?^${}()|[]\\ ')
+console.log(JSON.stringify(Cookie.get(' 曲奇,;=.*+?^${}()|[]\\ ')))
+
+// options
+Cookie.set('hello', 'world', {
+  path: '/',
+  domain: 'dev.local',
+  // secure: true, // unable to test under local http env
+  samesite: 'lax'
 })
 
-// remove a cookie
-cookie.remove('foo')
+// remove cookies
+Cookie.remove('cookie')
 
-// remove a cookie with attributes
-cookie.remove('foo', {
-  path: '/foo',
-  domain: 'www.example.com'
+// use same options as Cookie.set()
+Cookie.remove('hello', {
+  path: '/',
+  domain: 'dev.local',
+  samesite: 'lax'
 })
 
-// set cookie expires with GMT date string
-cookie.set('expiresGMT', 'ok', {
-  expires: 'Wed, 13 May 2015 07:30:00 GMT'
+// max-age
+Cookie.set('maxAge.Infinity', 'Infinity', {
+  maxAge: Infinity
 })
 
-// set cookie expires with ISO date string
-cookie.set('expiresISODate', 'ok', {
-  expires: '2015-05-13T07:30:00Z'
+Cookie.set('maxAge.60', '60', {
+  maxAge: 60
 })
 
-// set cookie expires with local date format
-cookie.set('expiresLocalDate', 'ok', {
-  expires: '2015-05-13 07:30:00'
+Cookie.set('maxAge.0', '0', {
+  maxAge: 0
 })
 
-// set cookie expires with milliseconds timestamp
-cookie.set('expiresTimestamp', 'ok', {
-  expires: 1431922243259
+Cookie.set('maxAge.-1', '-1', {
+  maxAge: -1
 })
+
+// expires
+Cookie.set('expires.Infinity', 'Infinity', {
+  expires: Infinity
+})
+
+Cookie.set('expires.timestamp', 'timestamp', {
+  expires: Date.now() + 60 * 1000
+})
+
+Cookie.set('expires.pastTime', 'pastTime', {
+  expires: Date.now() - 1
+})
+
+Cookie.set('expires.UTCString', 'UTCString', {
+  expires: new Date(Date.now() + 60 * 1000).toUTCString()
+})
+
+Cookie.set('expires.ISOString', 'ISOString', {
+  expires: new Date(Date.now() + 60 * 1000).toISOString()
+})
+
+Cookie.set('expires.LocaleString', 'LocaleString', {
+  expires: new Date(Date.now() + 60 * 1000).toLocaleString()
+})
+
+// instance with default options
+const cookie = new Cookie({
+  maxAge: 60,
+  path: '/',
+  domain: 'dev.local',
+  samesite: 'lax'
+})
+
+// set
+cookie.set('instance', 'with defaults')
+
+// get
+cookie.get('instance')
+
+// remove
+cookie.remove('instance')
 ```
 
 ## License

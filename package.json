@@ -1,51 +1,46 @@
 {
   "name": "cookie.js",
   "version": "3.0.0",
-  "description": "Cookie utility for browser",
-  "main": "dist/cookie.js",
+  "description": "document.cookie for human",
+  "main": "dist/Cookie.js",
+  "module": "dist/Cookie.mjs",
   "scripts": {
-    "build": "babel src -d dist"
+    "build": "rollup -c rollup.config.esm.mjs && rollup -c rollup.config.umd.mjs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fenivana/cookie.git"
+    "url": "git+https://github.com/jiangfengming/cookie.js.git"
   },
   "keywords": [
-    "cookie",
-    "browser"
+    "cookie"
   ],
-  "author": "Jiang Fengming <fenix@noindoin.com>",
+  "author": "Jiang Fengming <jiangfengming87@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fenivana/cookie/issues"
+    "url": "https://github.com/jiangfengming/cookie.js/issues"
   },
-  "homepage": "https://github.com/fenivana/cookie#readme",
+  "homepage": "https://github.com/jiangfengming/cookie.js#readme",
   "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-eslint": "7.2.3",
-    "babel-plugin-add-module-exports": "0.2.1",
-    "babel-preset-env": "1.5.2",
-    "babel-preset-stage-2": "6.24.1",
-    "eslint": "4.1.0",
-    "eslint-config-enough": "0.2.7"
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-config-enough": "^0.3.4",
+    "rollup": "^0.66.6",
+    "rollup-plugin-babel": "^4.0.3"
   },
   "babel": {
     "presets": [
       [
-        "env",
+        "@babel/preset-env",
         {
           "loose": true,
-          "modules": "umd"
+          "modules": false
         }
-      ],
-      "stage-2"
-    ],
-    "plugins": [
-      "add-module-exports"
+      ]
     ]
   },
   "eslintConfig": {
-    "parser": "babel-eslint",
     "extends": "enough",
     "env": {
       "browser": true

@@ -37,7 +37,9 @@ Cookie.remove('hello', {
   samesite: 'lax'
 })
 
-// max-age
+// max-age param
+// `max-age` is not compatible with any version of Internet Explorer, Edge and some mobile browsers.
+// so we will convert `max-age` to `expires` under the hood.
 Cookie.set('maxAge.Infinity', 'Infinity', {
   maxAge: Infinity
 })
@@ -54,7 +56,7 @@ Cookie.set('maxAge.-1', '-1', {
   maxAge: -1
 })
 
-// expires
+// expires param
 Cookie.set('expires.Infinity', 'Infinity', {
   expires: Infinity
 })

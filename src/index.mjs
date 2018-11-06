@@ -26,7 +26,7 @@ class Cookie {
     if (maxAge != null) {
       expires = maxAge <= 0 ? 0
         : maxAge === Infinity ? maxAge
-        : Date.now() + maxAge * 1000
+          : Date.now() + maxAge * 1000
     }
 
     if (expires != null) {

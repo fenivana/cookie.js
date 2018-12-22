@@ -2,8 +2,7 @@
   "name": "cookie.js",
   "version": "4.0.1",
   "description": "document.cookie for human",
-  "main": "dist/Cookie.js",
-  "module": "dist/Cookie.mjs",
+  "main": "dist/Cookie",
   "scripts": {
     "build": "rollup -c rollup.config.esm.mjs && rollup -c rollup.config.umd.mjs"
   },
@@ -21,13 +20,13 @@
   },
   "homepage": "https://github.com/jiangfengming/cookie.js#readme",
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.8.0",
+    "eslint": "^5.10.0",
     "eslint-config-enough": "^0.3.4",
-    "rollup": "^0.67.4",
-    "rollup-plugin-babel": "^4.0.3"
+    "rollup": "^0.68.1",
+    "rollup-plugin-babel": "^4.1.0"
   },
   "babel": {
     "presets": [

@@ -1,10 +1,5 @@
 # Cookie utility for browser
 
-## Install
-```sh
-yarn add cookie.js
-```
-
 ## Usage
 ```js
 import Cookie from 'cookie.js'

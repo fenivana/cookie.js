@@ -1,6 +1,4 @@
-var Cookie =
-/*#__PURE__*/
-function () {
+var Cookie = /*#__PURE__*/function () {
   function Cookie(_temp) {
     var _ref = _temp === void 0 ? {} : _temp,
         maxAge = _ref.maxAge,

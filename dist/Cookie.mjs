@@ -34,9 +34,16 @@ var Cookie = /*#__PURE__*/function () {
         samesite = _ref2$samesite === void 0 ? this.samesite : _ref2$samesite;
 
     var cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
-    if (path) cookie += '; path=' + path;
-    if (domain) cookie += '; domain=' + domain; // `max-age` is not compatible with any version of Internet Explorer, Edge and some mobile browsers.
+
+    if (path) {
+      cookie += '; path=' + path;
+    }
+
+    if (domain) {
+      cookie += '; domain=' + domain;
+    } // `max-age` is not compatible with any version of Internet Explorer, Edge and some mobile browsers.
     // so we convert `max-age` to `expires`
+
 
     if (maxAge != null) {
       expires = maxAge <= 0 ? 0 : maxAge === Infinity ? maxAge : Date.now() + maxAge * 1000;
@@ -50,8 +57,14 @@ var Cookie = /*#__PURE__*/function () {
       cookie += '; expires=' + expires.toUTCString();
     }
 
-    if (secure) cookie += '; secure';
-    if (samesite) cookie += '; samesite=' + samesite;
+    if (secure) {
+      cookie += '; secure';
+    }
+
+    if (samesite) {
+      cookie += '; samesite=' + samesite;
+    }
+
     document.cookie = cookie;
   };
 

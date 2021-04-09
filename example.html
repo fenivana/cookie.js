@@ -1,0 +1,98 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie.js</title>
+  </head>
+
+  <body>
+    <ol>
+      <li>In package root folder, run `npx serve`</li>
+      <li>Open http://localhost:5000/examples/</li>
+      <li>Open DevTools -> Application -> Cookies</li>
+    </ol>
+
+    <button id="btn">remove cookies</button>
+
+    <script type="module">
+      import { Cookie, cookie } from './dist/index.js';
+
+      // set cookie
+      cookie.set('cookie', 'delicious');
+
+      // get cookie
+      console.log(cookie.get('cookie'));
+
+      // Non-ASCII chars and special chars
+      cookie.set(' 曲奇,;=.*+?^${}()|[]\\ ', ' 好吃,;=.*+?^${}()|[]\\ ');
+      console.log(cookie.get(' 曲奇,;=.*+?^${}()|[]\\ '));
+
+      // options
+      cookie.set('hello', 'world', {
+        path: '/',
+        domain: 'dev.local',
+        // secure: true, // unable to test under local http env
+        samesite: 'lax'
+      });
+
+      // max-age param
+      // 60 seconds
+      cookie.set('maxAge.60', '60', {
+        maxAge: 60
+      });
+
+      // same as cookie.remove()
+      cookie.set('maxAge.0', '0', {
+        maxAge: 0
+      });
+
+      // expires param
+      // support Date object, timestamp, UTCString
+      cookie.set('expires.Date', 'Date', {
+        expires: new Date(Date.now() + 60 * 1000)
+      });
+
+      cookie.set('expires.timestamp', 'timestamp', {
+        expires: Date.now() + 60 * 1000
+      });
+
+      cookie.set('expires.UTCString', 'UTCString', {
+        expires: new Date(Date.now() + 60 * 1000).toUTCString()
+      });
+
+      // same as cookie.remove()
+      cookie.set('expires.pastTime', 'pastTime', {
+        expires: Date.now() - 1
+      });
+
+      // instance with default options
+      const ck = new Cookie({
+        maxAge: 60,
+        path: '/',
+        domain: 'dev.local',
+        samesite: 'lax'
+      });
+
+      ck.set('instance', 'with defaults');
+
+      document.getElementById('btn').addEventListener('click', () => {
+        cookie.remove('cookie');
+        cookie.remove(' 曲奇,;=.*+?^${}()|[]\\ ');
+
+        // use same options as cookie.set()
+        cookie.remove('hello', {
+          path: '/',
+          domain: 'dev.local',
+          samesite: 'lax'
+        });
+
+        cookie.remove('maxAge.60');
+        cookie.remove('expires.Date');
+        cookie.remove('expires.timestamp');
+        cookie.remove('expires.UTCString');
+
+        ck.remove('instance');
+      });
+    </script>
+  </body>
+</html>

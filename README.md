@@ -2,96 +2,77 @@
 
 ## Usage
 ```js
-import Cookie from 'cookie.js'
+import { Cookie, cookie } from 'cookie.js';
 
 // set cookie
-Cookie.set('cookie', 'delicious')
+cookie.set('cookie', 'delicious');
 
 // get cookie
-console.log(Cookie.get('cookie'))
+console.log(cookie.get('cookie'));
+
+// remove cookie
+cookie.remove('cookie');
 
 // Non-ASCII chars and special chars
-Cookie.set(' 曲奇,;=.*+?^${}()|[]\\ ', ' 好吃,;=.*+?^${}()|[]\\ ')
-console.log(JSON.stringify(Cookie.get(' 曲奇,;=.*+?^${}()|[]\\ ')))
+cookie.set(' 曲奇,;=.*+?^${}()|[]\\ ', ' 好吃,;=.*+?^${}()|[]\\ ');
+console.log(JSON.stringify(cookie.get(' 曲奇,;=.*+?^${}()|[]\\ ')));
 
 // options
-Cookie.set('hello', 'world', {
+cookie.set('hello', 'world', {
   path: '/',
-  domain: 'dev.local',
-  // secure: true, // unable to test under local http env
+  domain: 'example.com',
+  secure: true,
   samesite: 'lax'
-})
+});
 
-// remove cookies
-Cookie.remove('cookie')
-
-// use same options as Cookie.set()
-Cookie.remove('hello', {
+// use same options as cookie.set()
+cookie.remove('hello', {
   path: '/',
-  domain: 'dev.local',
+  domain: 'example.com',
+  secure: true,
   samesite: 'lax'
-})
+});
 
 // max-age param
-// `max-age` is not compatible with any version of Internet Explorer, Edge and some mobile browsers.
-// so we will convert `max-age` to `expires` under the hood.
-Cookie.set('maxAge.Infinity', 'Infinity', {
-  maxAge: Infinity
-})
-
-Cookie.set('maxAge.60', '60', {
+// 60 seconds
+cookie.set('maxAge.60', '60', {
   maxAge: 60
-})
+});
 
-Cookie.set('maxAge.0', '0', {
+// same as cookie.remove()
+cookie.set('maxAge.0', '0', {
   maxAge: 0
-})
-
-Cookie.set('maxAge.-1', '-1', {
-  maxAge: -1
-})
+});
 
 // expires param
-Cookie.set('expires.Infinity', 'Infinity', {
-  expires: Infinity
-})
+// support Date object, timestamp, UTCString
+cookie.set('expires.Date', 'Date', {
+  expires: new Date(Date.now() + 60 * 1000)
+});
 
-Cookie.set('expires.timestamp', 'timestamp', {
+cookie.set('expires.timestamp', 'timestamp', {
   expires: Date.now() + 60 * 1000
-})
+});
 
-Cookie.set('expires.pastTime', 'pastTime', {
-  expires: Date.now() - 1
-})
-
-Cookie.set('expires.UTCString', 'UTCString', {
+cookie.set('expires.UTCString', 'UTCString', {
   expires: new Date(Date.now() + 60 * 1000).toUTCString()
-})
+});
 
-Cookie.set('expires.ISOString', 'ISOString', {
-  expires: new Date(Date.now() + 60 * 1000).toISOString()
-})
-
-Cookie.set('expires.LocaleString', 'LocaleString', {
-  expires: new Date(Date.now() + 60 * 1000).toLocaleString()
-})
+// same as cookie.remove()
+cookie.set('expires.pastTime', 'pastTime', {
+  expires: Date.now() - 1
+});
 
 // instance with default options
-const cookie = new Cookie({
+const ck = new Cookie({
   maxAge: 60,
   path: '/',
-  domain: 'dev.local',
+  domain: 'example.com',
   samesite: 'lax'
-})
+});
 
-// set
-cookie.set('instance', 'with defaults')
-
-// get
-cookie.get('instance')
-
-// remove
-cookie.remove('instance')
+ck.set('instance', 'with defaults');
+ck.remove('instance');
 ```
 
 ## License

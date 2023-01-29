@@ -1,4 +1,4 @@
-export declare type Options = {
+export type Options = {
     maxAge?: number;
     expires?: number | string | Date;
     path?: string;
@@ -19,4 +19,5 @@ declare class Cookie {
     remove(name: string, opts?: Options): void;
 }
 declare const cookie: Cookie;
+export default cookie;
 export { Cookie, cookie };

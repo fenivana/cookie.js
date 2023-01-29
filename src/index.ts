@@ -1,23 +1,18 @@
 export type Options = {
-  maxAge?: number,
-  expires?: number | string | Date,
-  path?: string,
-  domain?: string,
-  secure?: boolean,
-  samesite?: string
+  maxAge?: number;
+  expires?: number | string | Date;
+  path?: string;
+  domain?: string;
+  secure?: boolean;
+  samesite?: string;
 };
 
 class Cookie {
   maxAge?: number;
-
   expires?: number | string | Date;
-
   path?: string;
-
   domain?: string;
-
   secure?: boolean;
-
   samesite?: string;
 
   constructor({ maxAge, expires, path, domain, secure, samesite }: Options = {}) {
@@ -85,4 +80,5 @@ class Cookie {
 
 const cookie = new Cookie();
 
+export default cookie;
 export { Cookie, cookie };

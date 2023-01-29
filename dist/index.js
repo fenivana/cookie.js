@@ -43,4 +43,5 @@ class Cookie {
     }
 }
 const cookie = new Cookie();
+export default cookie;
 export { Cookie, cookie };

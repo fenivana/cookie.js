@@ -1,20 +1,23 @@
+export type SameSite = "lax" | "strict" | "none";
 export type Options = {
-    maxAge?: number;
-    expires?: number | string | Date;
-    path?: string;
     domain?: string;
+    expires?: number | string | Date;
+    maxAge?: number;
+    partitioned?: boolean;
+    path?: string;
+    samesite?: SameSite;
     secure?: boolean;
-    samesite?: string;
 };
 declare class Cookie {
-    maxAge?: number;
-    expires?: number | string | Date;
-    path?: string;
     domain?: string;
+    expires?: number | string | Date;
+    maxAge?: number;
+    partitioned?: boolean;
+    path?: string;
+    samesite?: SameSite;
     secure?: boolean;
-    samesite?: string;
-    constructor({ maxAge, expires, path, domain, secure, samesite }?: Options);
-    set(name: string, value: string, { maxAge, expires, path, domain, secure, samesite }?: Options): void;
+    constructor({ domain, expires, maxAge, partitioned, path, samesite, secure, }?: Options);
+    set(name: string, value: string, { domain, expires, maxAge, partitioned, path, samesite, secure, }?: Options): void;
     get(name: string): string | null;
     remove(name: string, opts?: Options): void;
 }

@@ -1,45 +1,52 @@
 class Cookie {
-    constructor({ maxAge, expires, path, domain, secure, samesite } = {}) {
-        this.maxAge = maxAge;
-        this.expires = expires;
-        this.path = path;
+    constructor({ domain, expires, maxAge, partitioned, path, samesite, secure, } = {}) {
         this.domain = domain;
-        this.secure = secure;
+        this.expires = expires;
+        this.maxAge = maxAge;
+        this.partitioned = partitioned;
+        this.path = path;
         this.samesite = samesite;
+        this.secure = secure;
     }
-    set(name, value, { maxAge = this.maxAge, expires = this.expires, path = this.path, domain = this.domain, secure = this.secure, samesite = this.samesite } = {}) {
-        let cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
-        if (path) {
-            cookie += ';path=' + path;
-        }
+    set(name, value, { domain = this.domain, expires = this.expires, maxAge = this.maxAge, partitioned = this.partitioned, path = this.path, samesite = this.samesite, secure = this.secure, } = {}) {
+        let cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
         if (domain) {
-            cookie += ';domain=' + domain;
-        }
-        if (maxAge || maxAge === 0) {
-            cookie += ';max-age=' + maxAge;
+            cookie += ";domain=" + domain;
         }
         if (expires) {
             if (expires.constructor === Number) {
                 expires = new Date(expires);
             }
-            cookie += ';expires=' + (expires instanceof Date ? expires.toUTCString() : expires);
+            cookie +=
+                ";expires=" +
+                    (expires instanceof Date ? expires.toUTCString() : expires);
         }
-        if (secure) {
-            cookie += ';secure';
+        if (maxAge || maxAge === 0) {
+            cookie += ";max-age=" + maxAge;
+        }
+        if (partitioned) {
+            cookie += ";partitioned";
+        }
+        if (path) {
+            cookie += ";path=" + path;
         }
         if (samesite) {
-            cookie += ';samesite=' + samesite;
+            cookie += ";samesite=" + samesite;
+        }
+        if (secure) {
+            cookie += ";secure";
         }
         document.cookie = cookie;
     }
     get(name) {
-        const result = document.cookie.match(new RegExp('(?:^\\s*|;\\s*)' +
-            encodeURIComponent(name).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*=\\s*([^;]*)'));
+        const result = document.cookie.match(new RegExp("(?:^\\s*|;\\s*)" +
+            encodeURIComponent(name).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") +
+            "\\s*=\\s*([^;]*)"));
         return result ? decodeURIComponent(result[1]) : null;
     }
     remove(name, opts = {}) {
         opts.maxAge = 0;
-        this.set(name, '', opts);
+        this.set(name, "", opts);
     }
 }
 const cookie = new Cookie();

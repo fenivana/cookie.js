@@ -14,11 +14,7 @@ You can use the default `cookie` instance to set, get, and remove cookies. The d
 
 ```js
 import { Cookie } from 'cookie.js';
-```
 
-You can create a new instance of the `Cookie` class optionally passing an `Options` object to set default properties for the cookies it manages:
-
-```js
 const cookieInstance = new Cookie({
   domain: 'example.com',
   path: '/',
@@ -26,6 +22,8 @@ const cookieInstance = new Cookie({
   // ...other options
 });
 ```
+
+You can create a new instance of the `Cookie` class optionally passing an `Options` object to set default properties for the cookies it manages:
 
 ### Setting a Cookie
 

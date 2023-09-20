@@ -1,5 +1,8 @@
 # cookie.js: document.cookie for human
 
+## Breaking Changes in v7.0.0
+The `samesite` option has been renamed to `sameSite` to align with the camelCase convention.
+
 ## Usage
 
 ### Default Cookie Instance
@@ -32,7 +35,7 @@ To set a cookie, you can use the `set` method, passing the name and value of the
 ```js
 cookie.set('name', 'value', {
   maxAge: 3600,
-  samesite: 'lax',
+  sameSite: 'lax',
   // ...other options
 });
 ```
@@ -68,14 +71,15 @@ cookie.remove('name');
 - `remove(name: string, options?: Options)`: Removes the cookie with the specified name, using the specified options.
 
 ### `Options`
-Representing the different options that can be set for a cookie, including:
+Please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie) for more information on the options that can be set for a cookie.
+
   - `domain`: A `string` representing the domain for the cookie.
   - `expires`: A `number`, `string`, or `Date` object representing when the cookie should expire. If specified as a `number`, it is interpreted as a timestamp (the number of **milliseconds** since midnight at the beginning of January 1, 1970, UTC — a.k.a. the epoch). If specified as a `string`, it should adhere to the format returned by the `Date.toUTCString()` method.
   
   - `maxAge`: A `number` representing the maximum age of the cookie in **seconds**.
-  - `partitioned`: A `boolean` indicating whether the cookie is partitioned.
+  - `partitioned`: A `boolean` indicating whether the cookie should be stored using partitioned storage. See [Cookies Having Independent Partitioned State (CHIPS)](https://developer.mozilla.org/en-US/docs/Web/Privacy/Partitioned_cookies) for more details.
   - `path`: A `string` representing the path for the cookie.
-  - `samesite`: A `string` representing the SameSite attribute for the cookie. The possible values for this attribute are `lax`, `strict`, or `none`.
+  - `sameSite`: A `string` representing the SameSite attribute for the cookie. The possible values for this attribute are `Lax`, `Strict`, or `None`.
   - `secure`: A `boolean` indicating whether the cookie should be transmitted over secure channels only.
 
 ## License

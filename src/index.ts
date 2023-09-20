@@ -1,4 +1,4 @@
-export type SameSite = "lax" | "strict" | "none";
+export type SameSite = "Lax" | "Strict" | "None";
 
 export type Options = {
   domain?: string;
@@ -6,7 +6,7 @@ export type Options = {
   maxAge?: number;
   partitioned?: boolean;
   path?: string;
-  samesite?: SameSite;
+  sameSite?: SameSite;
   secure?: boolean;
 };
 
@@ -16,7 +16,7 @@ class Cookie {
   maxAge?: number;
   partitioned?: boolean;
   path?: string;
-  samesite?: SameSite;
+  sameSite?: SameSite;
   secure?: boolean;
 
   constructor({
@@ -25,7 +25,7 @@ class Cookie {
     maxAge,
     partitioned,
     path,
-    samesite,
+    sameSite,
     secure,
   }: Options = {}) {
     this.domain = domain;
@@ -33,7 +33,7 @@ class Cookie {
     this.maxAge = maxAge;
     this.partitioned = partitioned;
     this.path = path;
-    this.samesite = samesite;
+    this.sameSite = sameSite;
     this.secure = secure;
   }
 
@@ -46,14 +46,14 @@ class Cookie {
       maxAge = this.maxAge,
       partitioned = this.partitioned,
       path = this.path,
-      samesite = this.samesite,
+      sameSite = this.sameSite,
       secure = this.secure,
     }: Options = {}
   ): void {
     let cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value);
 
     if (domain) {
-      cookie += ";domain=" + domain;
+      cookie += "; Domain=" + domain;
     }
 
     if (expires) {
@@ -62,28 +62,28 @@ class Cookie {
       }
 
       cookie +=
-        ";expires=" +
+        "; Expires=" +
         (expires instanceof Date ? expires.toUTCString() : expires);
     }
 
     if (maxAge || maxAge === 0) {
-      cookie += ";max-age=" + maxAge;
+      cookie += "; Max-Age=" + maxAge;
     }
 
     if (partitioned) {
-      cookie += ";partitioned";
+      cookie += "; Partitioned";
     }
 
     if (path) {
-      cookie += ";path=" + path;
+      cookie += "; Path=" + path;
     }
 
-    if (samesite) {
-      cookie += ";samesite=" + samesite;
+    if (sameSite) {
+      cookie += "; SameSite=" + sameSite;
     }
 
     if (secure) {
-      cookie += ";secure";
+      cookie += "; Secure";
     }
 
     document.cookie = cookie;

@@ -1,6 +1,6 @@
 {
   "name": "cookie.js",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "description": "document.cookie for human",
   "main": "dist/index.js",
   "type": "module",

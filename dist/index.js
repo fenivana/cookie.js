@@ -42,7 +42,7 @@ class Cookie {
         const result = document.cookie.match(new RegExp("(?:^\\s*|;\\s*)" +
             encodeURIComponent(name).replace(/[.*+?^${}()|[\]\\]/g, "\\$&") +
             "\\s*=\\s*([^;]*)"));
-        return result ? decodeURIComponent(result[1]) : null;
+        return result ? decodeURIComponent(result[1]) : undefined;
     }
     remove(name, opts = {}) {
         opts.maxAge = 0;

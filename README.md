@@ -64,11 +64,11 @@ cookie.remove('name');
 
 - `constructor(options?: Options)`: Creates a new `Cookie` instance with the specified options.
 
-- `set(name: string, value: string, options?: Options)`: Sets a cookie with the specified name, value, and options. `value` will be encoded using `encodeURIComponent()`.
+- `set(name: string, value: string, options?: Options): void`: Sets a cookie with the specified name, value, and options. `value` will be encoded using `encodeURIComponent()`.
 
-- `get(name: string)`: Retrieves the value of the cookie with the specified name.
+- `get(name: string): string | undefined`: Retrieves the value of the cookie with the specified name. `value` will be decoded using `decodeURIComponent()`. If the cookie does not exist, `undefined` will be returned.
 
-- `remove(name: string, options?: Options)`: Removes the cookie with the specified name, using the specified options.
+- `remove(name: string, options?: Options): void`: Removes the cookie with the specified name, using the specified options.
 
 ### `Options`
 Please refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie) for more information on the options that can be set for a cookie.

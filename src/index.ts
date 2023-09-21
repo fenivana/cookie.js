@@ -89,7 +89,7 @@ class Cookie {
     document.cookie = cookie;
   }
 
-  get(name: string): string | null {
+  get(name: string): string | undefined {
     const result = document.cookie.match(
       new RegExp(
         "(?:^\\s*|;\\s*)" +
@@ -98,7 +98,7 @@ class Cookie {
       )
     );
 
-    return result ? decodeURIComponent(result[1]) : null;
+    return result ? decodeURIComponent(result[1]) : undefined;
   }
 
   remove(name: string, opts: Options = {}): void {

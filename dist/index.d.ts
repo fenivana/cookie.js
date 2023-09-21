@@ -18,7 +18,7 @@ declare class Cookie {
     secure?: boolean;
     constructor({ domain, expires, maxAge, partitioned, path, sameSite, secure, }?: Options);
     set(name: string, value: string, { domain, expires, maxAge, partitioned, path, sameSite, secure, }?: Options): void;
-    get(name: string): string | null;
+    get(name: string): string | undefined;
     remove(name: string, opts?: Options): void;
 }
 declare const cookie: Cookie;
